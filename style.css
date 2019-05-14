@@ -22,10 +22,8 @@ nav{
 }
 img{
     box-sizing: border-box;
-    float: left;
     width: 200px;
     height: 200px;
-    display: table;
     border: solid rgb(219, 214, 214);
     border-radius: 25px;
     padding: 3px;
