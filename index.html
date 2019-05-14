@@ -3,6 +3,7 @@
     <head>
         <link rel="stylesheet" type="text/css" href="reset.css"/>   
         <link rel="stylesheet" type="text/css" href="style.css"/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
         <title>Busmall-Start</title>
     </head>
     <body>
@@ -13,7 +14,7 @@
 
        
         <div id="image-container">
-            <ul>
+            <ul id="products-chart">
                 <li>
                     <img id="image-one" src="" alt="" title="">
                 </li>
@@ -30,6 +31,7 @@
 
     </nav>
 
+        <canvas id="products-chart" width="800px" height="400px"></canvas>
         
         <script type="text/javascript" src="app.js"></script> 
     </body>

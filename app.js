@@ -8,7 +8,7 @@ var imageThree = document.getElementById('image-three');
 var allProductsArray = [];
 var previouslyViewed = [];
 var votesRemaining = 25;
-
+var productsChart;
 
 
 
@@ -46,7 +46,7 @@ new Product ('wine-glass');
 
 
 
-//generate random picture
+//generate random picture//function declaration
 function getRandomIndex(){
   return Math.floor(Math.random() * allProductsArray.length);
 }
@@ -87,31 +87,73 @@ function renderProduct(){
   imageOne.src = allProductsArray[previouslyViewed[0]].filepath;
   imageTwo.src = allProductsArray[previouslyViewed[1]].filepath;
   imageThree.src = allProductsArray[previouslyViewed[2]].filepath;
+}
+//aaray that holds data
+var votes = [];
+var views = [];
 
-  // }
-
-  // var counter = 0;
-  // function renderProduct(){
-  //   for (var i = 0; i > allProductsArray.length; i++){
-  //     if
-  //   }
-
-
-  // if (previouslyViewed > 25){
-  //   previouslyViewed = [];
-  //   allProductsArray = 0;
-  // }
-
-//   productSelector();
-//   imageOne.src = allProductsArray[previouslyViewed[counter]].filepath;
-//   counter++;
-//   imageTwo.src = allProductsArray[previouslyViewed[counter]].filepath;
-//   counter++;
-//   imageThree.src = allProductsArray[previouslyViewed[counter]].filepath;
-//   counter++;
-//   console.log(previouslyViewed);
+function updateChartArray(){
+  for (var i = 0; i < allProductsArray.length; i++){
+    votes[i] = allProductsArray[i].votes;
+    clicks[i] = allProductsArray[i].clicks;
+  }
+function showAllProductsList(){
+  var allProductsArray
 }
 
+
+
+
+}
+var productsData = {
+  labels: allProductsArray,
+   datasets:[{
+    votes,
+    backgroundColor: [
+      'bisque',
+      'darkgray',
+      'white',
+      'lightblue',
+      'blue',
+    ],
+    hoverBackgroundColor:[
+      'yellow',
+      'yellow',
+      'yellow',
+      'yellow',
+      'yellow',
+    ]
+  }]
+};
+
+function drawChart({
+  var ctx = document.getElementById('productsChart');
+  productsChart = new prodChart(productsChart,{
+    type:'polarArea',
+    data: votesRemaining,
+    options: {
+      responsive: false,
+      animation: {
+        duration: 2000,
+        easing: 'easeOutBounce'
+      }
+    },
+    scales: {
+      yAxes: [{
+        ticks: {
+          max: 10,
+          min: 0,
+          stepSize: 1.0
+        }
+      }]
+    }
+  })
+});
+chartDrawn = true;
+
+
+
+//event listener
 imageContainer.addEventListener('click', handleClick);
 //event handler
 function handleClick(event){
@@ -125,15 +167,7 @@ function handleClick(event){
 renderProduct();
 
 
-//event listener
-// imageContainer.addEventListener('click', handleClick);
-// function handleClick(event){
-//   renderProduct();
-// }
 
-
-
-//function calls
 
 
 
