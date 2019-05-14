@@ -5,10 +5,12 @@ var imageContainer= document.getElementById('image-container');
 var imageOne = document.getElementById('image-one');
 var imageTwo = document.getElementById('image-two');
 var imageThree = document.getElementById('image-three');
+var productList = document.getElementById('product-list');
+var productChart = document.getElementById('product-chart');
 var allProductsArray = [];
 var previouslyViewed = [];
 var votesRemaining = 25;
-var productsChart;
+// var productsChart;
 
 
 
@@ -84,72 +86,97 @@ function productSelector(){
 //render product
 function renderProduct(){
   productSelector();
+  imageOne.alt = allProductsArray[previouslyViewed[0]].name;
+  imageTwo.alt = allProductsArray[previouslyViewed[1]].name;
+  imageThree.alt = allProductsArray[previouslyViewed[2]].name;
+
+  imageOne.title = allProductsArray[previouslyViewed[0]].name;
+  imageTwo.title = allProductsArray[previouslyViewed[1]].name;
+  imageThree.title = allProductsArray[previouslyViewed[2]].name;
+
+
   imageOne.src = allProductsArray[previouslyViewed[0]].filepath;
   imageTwo.src = allProductsArray[previouslyViewed[1]].filepath;
   imageThree.src = allProductsArray[previouslyViewed[2]].filepath;
-}
-//aaray that holds data
-var votes = [];
-var views = [];
 
-function updateChartArray(){
-  for (var i = 0; i < allProductsArray.length; i++){
-    votes[i] = allProductsArray[i].votes;
-    clicks[i] = allProductsArray[i].clicks;
+
+  allProductsArray[previouslyViewed[0]].views++;
+  allProductsArray[previouslyViewed[1]].views++;
+  allProductsArray[previouslyViewed[2]].views++;
+
+}
+
+function renderList (){
+  for ( var i = 0; i < allProductsArray.length; i++){
+    var liEl = document.createElement('li');
+    liEl.textContent = `${allProductsArray[i].name} was viewed ${allProductsArray[i].views} times and receieved ${allProductsArray[i].votes} of votes `;
+    productList.appendChild(liEl);
   }
-function showAllProductsList(){
-  var allProductsArray
-}
-
-
-
 
 }
-var productsData = {
-  labels: allProductsArray,
-   datasets:[{
-    votes,
-    backgroundColor: [
-      'bisque',
-      'darkgray',
-      'white',
-      'lightblue',
-      'blue',
-    ],
-    hoverBackgroundColor:[
-      'yellow',
-      'yellow',
-      'yellow',
-      'yellow',
-      'yellow',
-    ]
-  }]
-};
 
-function drawChart({
-  var ctx = document.getElementById('productsChart');
-  productsChart = new prodChart(productsChart,{
-    type:'polarArea',
-    data: votesRemaining,
-    options: {
-      responsive: false,
-      animation: {
-        duration: 2000,
-        easing: 'easeOutBounce'
-      }
-    },
-    scales: {
-      yAxes: [{
-        ticks: {
-          max: 10,
-          min: 0,
-          stepSize: 1.0
-        }
-      }]
-    }
-  })
-});
-chartDrawn = true;
+// //aaray that holds data
+// var votes = [];
+// var views = [];
+
+// function updateChartArray(){
+//   for (var i = 0; i < allProductsArray.length; i++){
+//     votes[i] = allProductsArray[i].votes;
+//     clicks[i] = allProductsArray[i].clicks;
+//   }
+// function showAllProductsList(){
+//   var allProductsArray
+// }
+
+
+
+
+// }
+// var productsData = {
+//   labels: allProductsArray,
+//    datasets:[{
+//     votes,
+//     backgroundColor: [
+//       'bisque',
+//       'darkgray',
+//       'white',
+//       'lightblue',
+//       'blue',
+//     ],
+//     hoverBackgroundColor:[
+//       'yellow',
+//       'yellow',
+//       'yellow',
+//       'yellow',
+//       'yellow',
+//     ]
+//   }]
+// };
+
+// function drawChart({
+//   var ctx = document.getElementById('productsChart');
+//   productsChart = new prodChart(productsChart,{
+//     type:'polarArea',
+//     data: votesRemaining,
+//     options: {
+//       responsive: false,
+//       animation: {
+//         duration: 2000,
+//         easing: 'easeOutBounce'
+//       }
+//     },
+//     scales: {
+//       yAxes: [{
+//         ticks: {
+//           max: 10,
+//           min: 0,
+//           stepSize: 1.0
+//         }
+//       }]
+//     }
+//   })
+// });
+// chartDrawn = true;
 
 
 
@@ -157,11 +184,19 @@ chartDrawn = true;
 imageContainer.addEventListener('click', handleClick);
 //event handler
 function handleClick(event){
-  renderProduct();
+
   votesRemaining--;
+
+  for (var i = 0; i < allProductsArray.length; i++){
+    if (event.target.alt === allProductsArray[i].name){
+      allProductsArray[i].votes++;
+    }
+  }
   if (votesRemaining === 0){
     imageContainer.removeEventListener('click', handleClick);
-  } 
+    renderList();
+  }
+  renderProduct();
 }
 
 renderProduct();
