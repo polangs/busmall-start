@@ -9,6 +9,8 @@ var allProductsArray = [];
 var previouslyViewed = [];
 
 
+
+
 //constructor
 function Product(name){
   this.name = name;
@@ -54,14 +56,29 @@ function productSelector(){
     firstImage = getRandomIndex();
   }
   previouslyViewed.push(firstImage);
-  //do this for 2nd and 3rd image
+
+  var secondImage = getRandomIndex();
+  while (previouslyViewed.includes(secondImage)){
+    secondImage = getRandomIndex();
+  }
+  previouslyViewed.push(secondImage);
 }
 
+var thirdImage = getRandomIndex();
+while (previouslyViewed.includes(thirdImage)){
+  thirdImage = getRandomIndex();
+}
+previouslyViewed.push(thirdImage);
+
+//render product
 function renderProduct(){
   productSelector();
   imageOne.src = allProductsArray[previouslyViewed[0]].filepath;
+  imageTwo.src = allProductsArray[previouslyViewed[1]].filepath;
+  imageThree.src = allProductsArray[previouslyViewed[2]].filepath;
+
 }
-// do this for images 2 and 3 [1] [2]
+
 
 //event handler
 function handleClick(event){
@@ -70,6 +87,11 @@ function handleClick(event){
 
 //event listener
 imageContainer.addEventListener('click', handleClick);
-//show first set of pictures on click
+function handleClick(event){
+	renderProduct();
+}
 
+
+
+//function calls
 renderProduct();
