@@ -7,6 +7,7 @@ var imageTwo = document.getElementById('image-two');
 var imageThree = document.getElementById('image-three');
 var allProductsArray = [];
 var previouslyViewed = [];
+var votesRemaining = 25;
 
 
 
@@ -56,19 +57,29 @@ function productSelector(){
     firstImage = getRandomIndex();
   }
   previouslyViewed.push(firstImage);
+  while (previouslyViewed.length > 6){
+    previouslyViewed.shift();
+  }
 
   var secondImage = getRandomIndex();
   while (previouslyViewed.includes(secondImage)){
     secondImage = getRandomIndex();
   }
   previouslyViewed.push(secondImage);
-}
+  while (previouslyViewed.length > 6){
+    previouslyViewed.shift();
+  }
 
-var thirdImage = getRandomIndex();
-while (previouslyViewed.includes(thirdImage)){
-  thirdImage = getRandomIndex();
+
+  var thirdImage = getRandomIndex();
+  while (previouslyViewed.includes(thirdImage)){
+    thirdImage = getRandomIndex();
+  }
+  previouslyViewed.push(thirdImage);
+  while (previouslyViewed.length > 6){
+    previouslyViewed.shift();
+  }
 }
-previouslyViewed.push(thirdImage);
 
 //render product
 function renderProduct(){
@@ -77,21 +88,52 @@ function renderProduct(){
   imageTwo.src = allProductsArray[previouslyViewed[1]].filepath;
   imageThree.src = allProductsArray[previouslyViewed[2]].filepath;
 
+  // }
+
+  // var counter = 0;
+  // function renderProduct(){
+  //   for (var i = 0; i > allProductsArray.length; i++){
+  //     if
+  //   }
+
+
+  // if (previouslyViewed > 25){
+  //   previouslyViewed = [];
+  //   allProductsArray = 0;
+  // }
+
+//   productSelector();
+//   imageOne.src = allProductsArray[previouslyViewed[counter]].filepath;
+//   counter++;
+//   imageTwo.src = allProductsArray[previouslyViewed[counter]].filepath;
+//   counter++;
+//   imageThree.src = allProductsArray[previouslyViewed[counter]].filepath;
+//   counter++;
+//   console.log(previouslyViewed);
 }
 
-
+imageContainer.addEventListener('click', handleClick);
 //event handler
 function handleClick(event){
   renderProduct();
+  votesRemaining--;
+  if (votesRemaining === 0){
+    imageContainer.removeEventListener('click', handleClick);
+  } 
 }
 
+renderProduct();
+
+
 //event listener
-imageContainer.addEventListener('click', handleClick);
-function handleClick(event){
-	renderProduct();
-}
+// imageContainer.addEventListener('click', handleClick);
+// function handleClick(event){
+//   renderProduct();
+// }
 
 
 
 //function calls
-renderProduct();
+
+
+
