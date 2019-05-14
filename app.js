@@ -8,7 +8,7 @@ var imageThree = document.getElementById('image-three');
 var allProductsArray = [];
 var previouslyViewed = [];
 var votesRemaining = 25;
-// var productsChart;
+var productsChart;
 
 
 
@@ -88,68 +88,68 @@ function renderProduct(){
   imageTwo.src = allProductsArray[previouslyViewed[1]].filepath;
   imageThree.src = allProductsArray[previouslyViewed[2]].filepath;
 }
-// //aaray that holds data
-// var votes = [];
-// var views = [];
+//aaray that holds data
+var votes = [];
+var views = [];
 
-// function updateChartArray(){
-//   for (var i = 0; i < allProductsArray.length; i++){
-//     votes[i] = allProductsArray[i].votes;
-//     clicks[i] = allProductsArray[i].clicks;
-//   }
-// function showAllProductsList(){
-//   var allProductsArray
-// }
-
-
+function updateChartArray(){
+  for (var i = 0; i < allProductsArray.length; i++){
+    votes[i] = allProductsArray[i].votes;
+    clicks[i] = allProductsArray[i].clicks;
+  }
+function showAllProductsList(){
+  var allProductsArray
+}
 
 
-// }
-// var productsData = {
-//   labels: allProductsArray,
-//    datasets:[{
-//     votes,
-//     backgroundColor: [
-//       'bisque',
-//       'darkgray',
-//       'white',
-//       'lightblue',
-//       'blue',
-//     ],
-//     hoverBackgroundColor:[
-//       'yellow',
-//       'yellow',
-//       'yellow',
-//       'yellow',
-//       'yellow',
-//     ]
-//   }]
-// };
 
-// function drawChart({
-//   var ctx = document.getElementById('productsChart');
-//   productsChart = new prodChart(productsChart,{
-//     type:'polarArea',
-//     data: votesRemaining,
-//     options: {
-//       responsive: false,
-//       animation: {
-//         duration: 2000,
-//         easing: 'easeOutBounce'
-//       }
-//     },
-//     scales: {
-//       yAxes: [{
-//         ticks: {
-//           max: 10,
-//           min: 0,
-//           stepSize: 1.0
-//         }
-//       }]
-//     }
-//   })
-// });
-// chartDrawn = true;
+
+}
+var productsData = {
+  labels: allProductsArray,
+   datasets:[{
+    votes,
+    backgroundColor: [
+      'bisque',
+      'darkgray',
+      'white',
+      'lightblue',
+      'blue',
+    ],
+    hoverBackgroundColor:[
+      'yellow',
+      'yellow',
+      'yellow',
+      'yellow',
+      'yellow',
+    ]
+  }]
+};
+
+function drawChart({
+  var ctx = document.getElementById('productsChart');
+  productsChart = new prodChart(productsChart,{
+    type:'polarArea',
+    data: votesRemaining,
+    options: {
+      responsive: false,
+      animation: {
+        duration: 2000,
+        easing: 'easeOutBounce'
+      }
+    },
+    scales: {
+      yAxes: [{
+        ticks: {
+          max: 10,
+          min: 0,
+          stepSize: 1.0
+        }
+      }]
+    }
+  })
+});
+chartDrawn = true;
 
 
 
