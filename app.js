@@ -6,6 +6,7 @@ var imageOne = document.getElementById('image-one');
 var imageTwo = document.getElementById('image-two');
 var imageThree = document.getElementById('image-three');
 var productList = document.getElementById('product-list');
+//holds all the index numbers
 var allProductsArray = [];
 var previouslyViewed = [];
 var votesRemaining = 25;
@@ -37,10 +38,10 @@ new Product ('pen');
 new Product ('pet-sweep');
 new Product ('scissors');
 new Product ('shark');
-new Product ('sweep');
+// new Product ('sweep');
 new Product ('tauntaun');
 new Product ('unicorn');
-new Product ('usb');
+// new Product ('usb');
 new Product ('water-can');
 new Product ('wine-glass');
 
@@ -70,7 +71,6 @@ function productSelector(){
     previouslyViewed.shift();
   }
 
-
   var thirdImage = getRandomIndex();
   while (previouslyViewed.includes(thirdImage)){
     thirdImage = getRandomIndex();
@@ -84,6 +84,8 @@ function productSelector(){
 //render product
 function renderProduct(){
   productSelector();
+
+  //assign src, alt and title
   imageOne.alt = allProductsArray[previouslyViewed[0]].name;
   imageTwo.alt = allProductsArray[previouslyViewed[1]].name;
   imageThree.alt = allProductsArray[previouslyViewed[2]].name;
@@ -119,6 +121,8 @@ var names = [];
 var chartDrawn;
 var productsData;
 
+
+//function that pushes the names and votes to the arrays
 function updateChartArray(){
   for (var i = 0; i < allProductsArray.length; i++){
     votes[i] = allProductsArray[i].votes;
@@ -173,6 +177,27 @@ function drawChart() {
   chartDrawn = true;
 }
 
+//creating a variable and storing my stringified data
+function createLocalStorage(){
+  var stringifiedallProductsArray = JSON.stringify(allProductsArray);
+  //passing stringified data into storage and giving it the key to access to my storage
+  localStorage.setItem('productsArrayStorage', stringifiedallProductsArray);
+}
+//function im calling when loading page
+function checkingLocalStorage(){
+//if local storage has something in it then it's true otherwise it will come as null and cont to else
+  if (localStorage.productsArrayStorage){
+    //declaring a new var to store my storage in and using my key
+    var retrieveProducts = localStorage.getItem('productsArrayStorage');
+    //declaring a new var and assigning it to parse my storage data
+    var parsedProducts = JSON.parse(retrieveProducts);
+    //im combining my all my storage into the variable that will hold my new data
+    allProductsArray = parsedProducts;
+    renderProduct();
+  }else{
+    renderProduct();
+  }
+}
 
 //event listener
 imageContainer.addEventListener('click', handleClick);
@@ -191,10 +216,11 @@ function handleClick(event){
     renderList();
     updateChartArray();
     drawChart();
+    createLocalStorage();
   }
   renderProduct();
+
 }
 
-renderProduct();
-
-
+// renderProduct();
+checkingLocalStorage();
