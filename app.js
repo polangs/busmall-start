@@ -6,6 +6,7 @@ var imageOne = document.getElementById('image-one');
 var imageTwo = document.getElementById('image-two');
 var imageThree = document.getElementById('image-three');
 var productList = document.getElementById('product-list');
+//holds all the index numbers
 var allProductsArray = [];
 var previouslyViewed = [];
 var votesRemaining = 25;
@@ -70,7 +71,6 @@ function productSelector(){
     previouslyViewed.shift();
   }
 
-
   var thirdImage = getRandomIndex();
   while (previouslyViewed.includes(thirdImage)){
     thirdImage = getRandomIndex();
@@ -84,6 +84,8 @@ function productSelector(){
 //render product
 function renderProduct(){
   productSelector();
+
+  //assign src, alt and title
   imageOne.alt = allProductsArray[previouslyViewed[0]].name;
   imageTwo.alt = allProductsArray[previouslyViewed[1]].name;
   imageThree.alt = allProductsArray[previouslyViewed[2]].name;
@@ -119,6 +121,8 @@ var names = [];
 var chartDrawn;
 var productsData;
 
+
+//function that pushes the names and votes to the arrays 
 function updateChartArray(){
   for (var i = 0; i < allProductsArray.length; i++){
     votes[i] = allProductsArray[i].votes;
@@ -173,6 +177,13 @@ function drawChart() {
   chartDrawn = true;
 }
 
+function createLocalStorage(){
+  var stringifiedallProductsArray = JSON.stringify(allProductsArray);
+  localStorage.setItem('productsArrayStorage', stringifiedallProductsArray);
+}
+
+
+
 
 //event listener
 imageContainer.addEventListener('click', handleClick);
@@ -191,10 +202,49 @@ function handleClick(event){
     renderList();
     updateChartArray();
     drawChart();
+    createLocalStorage();
   }
   renderProduct();
+  
 }
 
 renderProduct();
 
+
+
+
+
+
+
+///////****local storage
+
+// //original data//source mdn
+// var allProductsArray = {
+//   if(!storageProducts || !allProductsArray)
+//       value = JSON.stringify(allProductsArray);
+//     }
+//     localStorage.setItem(storageProducts,allProductsArray);
+//   get: function (storageProducts){
+//     var retrieveProducts = localStorage.getItem(retrieveProducts);
+//     if (!storageProducts) {return;}
+//   }
+//   // assume it is an object that has been stringified
+//    if (allProductsArray[0] === "{") {
+//        allProductsArray = JSON.parse(allProductsArray);
+//      }
+
+//      return allProductsArray;
+    
+
+// stringified
+//local storage
+//retrieve
+//parsed
+
+// if (there is local storage data){
+//   retrieveFrom localStorageassign that data to the place it will be used
+// }else
+//   create Instance
+// }
+// paint the page
 
