@@ -122,7 +122,7 @@ var chartDrawn;
 var productsData;
 
 
-//function that pushes the names and votes to the arrays 
+//function that pushes the names and votes to the arrays
 function updateChartArray(){
   for (var i = 0; i < allProductsArray.length; i++){
     votes[i] = allProductsArray[i].votes;
@@ -176,14 +176,27 @@ function drawChart() {
   });
   chartDrawn = true;
 }
-
+//creating a variable and storing my stringified data 
 function createLocalStorage(){
   var stringifiedallProductsArray = JSON.stringify(allProductsArray);
+  //passing stringified data into storage and giving it the key to access to my storage
   localStorage.setItem('productsArrayStorage', stringifiedallProductsArray);
 }
-
-
-
+//function im calling when loading page
+function checkingLocalStorage(){
+//if local storage has something in it then it's true otherwise it will come as null and cont to else
+  if (localStorage.productsArrayStorage){
+//declaring a new var to store my storage in and using my key
+    var retrieveProducts = localStorage.getItem('productsArrayStorage');
+//declaring a new var and assigning it to parse my storage data
+    var parsedProducts = JSON.parse(retrieveProducts);
+//im combining my all my storage into the variable that will hold my new data 
+    parsedProducts = allProductsArray;
+    renderProduct();
+  }else{
+    renderProduct();
+  }
+}
 
 //event listener
 imageContainer.addEventListener('click', handleClick);
@@ -205,36 +218,15 @@ function handleClick(event){
     createLocalStorage();
   }
   renderProduct();
-  
+
 }
 
-renderProduct();
+// renderProduct();
+checkingLocalStorage();
 
 
 
 
-
-
-
-///////****local storage
-
-// //original data//source mdn
-// var allProductsArray = {
-//   if(!storageProducts || !allProductsArray)
-//       value = JSON.stringify(allProductsArray);
-//     }
-//     localStorage.setItem(storageProducts,allProductsArray);
-//   get: function (storageProducts){
-//     var retrieveProducts = localStorage.getItem(retrieveProducts);
-//     if (!storageProducts) {return;}
-//   }
-//   // assume it is an object that has been stringified
-//    if (allProductsArray[0] === "{") {
-//        allProductsArray = JSON.parse(allProductsArray);
-//      }
-
-//      return allProductsArray;
-    
 
 // stringified
 //local storage
