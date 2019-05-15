@@ -38,10 +38,10 @@ new Product ('pen');
 new Product ('pet-sweep');
 new Product ('scissors');
 new Product ('shark');
-new Product ('sweep');
+// new Product ('sweep');
 new Product ('tauntaun');
 new Product ('unicorn');
-new Product ('usb');
+// new Product ('usb');
 new Product ('water-can');
 new Product ('wine-glass');
 
@@ -176,7 +176,8 @@ function drawChart() {
   });
   chartDrawn = true;
 }
-//creating a variable and storing my stringified data 
+
+//creating a variable and storing my stringified data
 function createLocalStorage(){
   var stringifiedallProductsArray = JSON.stringify(allProductsArray);
   //passing stringified data into storage and giving it the key to access to my storage
@@ -186,12 +187,12 @@ function createLocalStorage(){
 function checkingLocalStorage(){
 //if local storage has something in it then it's true otherwise it will come as null and cont to else
   if (localStorage.productsArrayStorage){
-//declaring a new var to store my storage in and using my key
+    //declaring a new var to store my storage in and using my key
     var retrieveProducts = localStorage.getItem('productsArrayStorage');
-//declaring a new var and assigning it to parse my storage data
+    //declaring a new var and assigning it to parse my storage data
     var parsedProducts = JSON.parse(retrieveProducts);
-//im combining my all my storage into the variable that will hold my new data 
-    parsedProducts = allProductsArray;
+    //im combining my all my storage into the variable that will hold my new data
+    allProductsArray = parsedProducts;
     renderProduct();
   }else{
     renderProduct();
@@ -223,20 +224,3 @@ function handleClick(event){
 
 // renderProduct();
 checkingLocalStorage();
-
-
-
-
-
-// stringified
-//local storage
-//retrieve
-//parsed
-
-// if (there is local storage data){
-//   retrieveFrom localStorageassign that data to the place it will be used
-// }else
-//   create Instance
-// }
-// paint the page
-
