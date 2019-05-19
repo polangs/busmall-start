@@ -4,17 +4,17 @@ body{
 h1{
     text-align: center;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    font-size: 70px;
-    padding-top: 35px;    
+    font-size: 5em;
+    padding-top: 3em;    
     font-weight: bolder;
 }
 h2{
     text-align: center;
     color: red;
     font-weight: bold;
-    font-size: 25px;
+    font-size: 2em;
     font-style: italic;
-    padding: 50px;
+    padding: 2em;
 }
 nav{
     width: 960px;
