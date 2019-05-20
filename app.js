@@ -137,18 +137,18 @@ function drawChart() {
       label: 'Total Votes',
       data: votes,
       backgroundColor: [
-        'bisque',
         'darkgray',
-        'white',
-        'lightblue',
-        'blue',
+        'darkgray',
+        'darkgray',
+        'darkgray',
+        'darkgray',
       ],
       hoverBackgroundColor:[
-        'yellow',
-        'yellow',
-        'yellow',
-        'yellow',
-        'yellow',
+        'white',
+        'white',
+        'white',
+        'white',
+        'white',
       ]
     }]
   };
@@ -187,7 +187,7 @@ function createLocalStorage(){
 function checkingLocalStorage(){
 //if local storage has something in it then it's true otherwise it will come as null and cont to else
   if (localStorage.productsArrayStorage){
-    //declaring a new var to store my storage in and using my key
+  //declaring a new var to store my storage in and using my key
     var retrieveProducts = localStorage.getItem('productsArrayStorage');
     //declaring a new var and assigning it to parse my storage data
     var parsedProducts = JSON.parse(retrieveProducts);
