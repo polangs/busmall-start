@@ -4,27 +4,38 @@ body{
 h1{
     text-align: center;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    font-size: 5em;
-    padding-top: 3em;    
+    font-size: 3em;
+    padding-top: 2em;    
     font-weight: bolder;
 }
 h2{
-    text-align: center;
-    color: red;
+    text-align: left;
+    color: rgb(58, 52, 52);
     font-weight: bold;
     font-size: 2em;
     font-style: italic;
     padding: 2em;
+
+}
+ol{
+    /* overflow: scroll; */
+
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-align: center;
+    margin-right: 3em;
+    margin-left: 3em;
 }
 nav{
     width: 960px;
     margin: 0px auto;
 }
 img{
-    box-sizing: border-box;
     width: 200px;
     height: 200px;
-    border: solid rgb(219, 214, 214);
+    border: solid rgb(35, 37, 8);
     border-radius: 25px;
     padding: 3px;
+    text-align: center;
+    margin-top: 4em;
 }
+
